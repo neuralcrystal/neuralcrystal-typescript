@@ -1,0 +1,60 @@
+{
+  "name": "neuralcrystal",
+  "version": "0.1.0",
+  "description": "Run trained NeuralCrystal crystals in the browser (WebGPU) or Node (CPU): the light path through a glass block of phase surfaces, plus chess, checkers, MNIST, CIFAR-10 and Craftax kits. The TypeScript twin of the Python package.",
+  "keywords": [
+    "neuralcrystal",
+    "optical-computing",
+    "diffractive-neural-network",
+    "webgpu",
+    "optics",
+    "machine-learning"
+  ],
+  "author": "Pete DeLaurentis",
+  "license": "MIT",
+  "homepage": "https://neuralcrystal.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neuralcrystal/neuralcrystal-typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neuralcrystal/neuralcrystal-typescript/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src test examples",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run sizes",
+    "test:gpu": "vite-node test/gpu-parity.ts",
+    "sizes": "vite-node tools/check-sizes.ts",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@webgpu/types": "^0.1.74",
+    "eslint": "^9.39.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^3.2.7",
+    "webgpu": "^0.6.1"
+  }
+}
